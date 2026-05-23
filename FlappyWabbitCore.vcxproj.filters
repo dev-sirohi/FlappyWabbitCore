@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{BDD66C1A-2943-2815-F236-C0725E624A7D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Character2D">
+      <UniqueIdentifier>{CF256822-3B94-BDA1-847D-78A1F02AB33D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{F9B8888F-651A-669D-EE87-AC4F5AE89C5C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{21EB8090-0D4E-1035-B6D3-48EBA215DCB7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{192C3F5D-8542-3DF3-CEB9-C8143A0F0E7B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{F5187793-6185-328E-2A79-CAEB96A454F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Character2D">
+      <UniqueIdentifier>{077CAF57-73EA-04D7-BCD3-BFD62881FA72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{310D2DCE-9D6E-0ADC-26DC-508E923C419B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Resource Files">
+      <UniqueIdentifier>{BAF00917-2652-E724-AFBF-2DD71B201EE4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows Resource Files">
+      <UniqueIdentifier>{6B659E97-575F-C7E9-40CC-5DFA2C652D56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\resource_dir.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Animation2D.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\AnimationController.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Character2D.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Global.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\IEntity.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\IScene.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Includes.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entities\Character2D\Wabbit.h">
+      <Filter>Header Files\Entities\Character2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scenes\TitleScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Entities\Character2D\Wabbit.cpp">
+      <Filter>Source Files\Entities\Character2D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\TitleScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\icon.ico">
+      <Filter>Windows Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\application.rc">
+      <Filter>Windows Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\Wabbit.png">
+      <Filter>Game Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

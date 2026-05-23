@@ -6,7 +6,7 @@
     <Platform Name="Win32" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="flappy_wabbit.vcxproj" Id="A9E1584F-15A2-D485-DEDC-1D034A5C1962" DefaultStartup="true">
+  <Project Path="FlappyWabbitCore.vcxproj" Id="53F9AEFF-3FF2-CD51-6824-B3D6547CAD5D" DefaultStartup="true">
     <BuildDependency Project="raylib.vcxproj" />
   </Project>
   <Project Path="raylib.vcxproj" Id="8898EA18-743A-15EF-5DF5-284349369C3F">
