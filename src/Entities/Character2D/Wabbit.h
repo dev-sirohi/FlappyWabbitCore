@@ -7,9 +7,8 @@
 class Wabbit : public Character2D
 {
   private:
-    AnimationController _animationController;
-
     void _Move(float dt);
+
   public:
     bool IsGrounded = false;
 

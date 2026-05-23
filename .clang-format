@@ -1,6 +1,6 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
-ColumnLimit: 999
+ColumnLimit: 125
 BreakBeforeBraces: Allman
 BinPackArguments: false
 BinPackParameters: false

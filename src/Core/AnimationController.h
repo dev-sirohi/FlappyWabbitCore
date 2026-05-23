@@ -22,11 +22,15 @@ class AnimationController
 
     void SetCurrentAnimationState(int animationIndex)
     {
+        if (animationIndex > _animationList.size())
+        {
+            throw std::runtime_error("Animation index out of bounds.");
+        }
         _currentAnimationIndex = animationIndex;
     }
 
-    Animation2D *GetCurrentAnimation()
+    Animation2D &GetCurrentAnimation()
     {
-        return &_animationList[_currentAnimationIndex];
+        return _animationList[_currentAnimationIndex];
     }
 };

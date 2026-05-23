@@ -1,6 +1,6 @@
 #include <Core/Includes.h>
-#include <Scenes/TitleScene.h>
 #include <Entities/Character2D/Wabbit.h>
+#include <Scenes/TitleScene.h>
 
 TitleScene::TitleScene()
 {
