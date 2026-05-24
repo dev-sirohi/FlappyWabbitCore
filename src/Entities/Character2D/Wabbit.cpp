@@ -18,7 +18,7 @@ constexpr float FRAME_SIZE             = 32.0f;
 
 constexpr Vector2 VELOCITY = Vector2{};
 constexpr Vector2 POSITION = Vector2{100, 100};
-constexpr Vector2 SIZE     = Vector2{FRAME_SIZE * SCALE, FRAME_SIZE *SCALE};
+constexpr Vector2 SIZE     = Vector2{(FRAME_SIZE * SCALE), (FRAME_SIZE * SCALE)};
 constexpr Color COLOR      = WHITE;
 
 constexpr float VELOCITY_X = 600.0f;
@@ -120,10 +120,8 @@ void Wabbit::Update(float dt)
 
 void Wabbit::Draw()
 {
-#ifdef ENABLE_COLLISION_DEBUGGING
-    DrawRectangleLinesEx(GetCollider(), 2, RED);
-    DrawRectangleLinesEx(GetWorldCollider(), 2, GREEN);
-#endif
+    Character2D::Draw();
+
     DrawTexturePro(_texture,
                    GetCurrentAnimationFrame(),
                    Rectangle{_position.x, _position.y, _size.x, _size.y},

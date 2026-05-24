@@ -1,12 +1,13 @@
 #pragma once
 
+#include <Core/Animatable.h>
 #include <Core/Global.h>
 #include <Core/ICollidable.h>
+#include <Core/IDebuggable.h>
 #include <Core/IEntity.h>
 #include <Core/Includes.h>
-#include <Core/IAnimatable.h>
 
-class Character2D : public IEntity, public ICollidable, public IAnimatable
+class Character2D : public IEntity, public ICollidable, public Animatable, public IDebuggable
 {
   protected:
     std::string _spritePath = "";
@@ -20,15 +21,17 @@ class Character2D : public IEntity, public ICollidable, public IAnimatable
   public:
     virtual ~Character2D()
     {
-        UnloadTexture(_texture);
+        if (_texture.id != 0)
+        {
+            UnloadTexture(_texture);
+        }
     }
 
     virtual void Load()           = 0;
     virtual void Update(float dt) = 0;
-    virtual void Draw()           = 0;
+    virtual void Draw();
 
-    Rectangle GetCollider() const override
-    {
-        return Rectangle{_position.x, _position.y, _size.x, _size.y};
-    }
+    Rectangle GetCollider() const override;
+
+    void DrawColliderLines() override;
 };

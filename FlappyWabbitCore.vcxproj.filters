@@ -69,7 +69,9 @@
     <ClInclude Include="src\Core\ICollidable.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\IAnimatable.h" />
+    <ClInclude Include="src\Core\Animatable.h" />
+    <ClInclude Include="src\Core\Debugging.h" />
+    <ClInclude Include="src\Core\IDebuggable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\Character2D\Wabbit.cpp">
@@ -87,7 +89,9 @@
     <ClCompile Include="src\Core\Common.cpp">
       <Filter>Header Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\IAnimatable.cpp" />
+    <ClCompile Include="src\Core\Animatable.cpp" />
+    <ClCompile Include="src\Core\Character2D.cpp" />
+    <ClCompile Include="src\Core\IDebuggable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icon.ico">

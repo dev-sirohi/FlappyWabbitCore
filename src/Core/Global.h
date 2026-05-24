@@ -1,7 +1,5 @@
 #pragma once
 
-#define ENABLE_COLLISION_DEBUGGING
-
 namespace Constants
 {
 inline constexpr char *GAME_NAME            = "Flappy Wabbit";

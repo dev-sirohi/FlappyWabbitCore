@@ -3,7 +3,7 @@
 #include <Core/AnimationController.h>
 #include <Core/Includes.h>
 
-class IAnimatable
+class Animatable
 {
   private:
     AnimationController _animationController;
@@ -15,5 +15,5 @@ class IAnimatable
     void SetAnimation(int animationIndex);
     void UpdateAnimation(float dt);
 
-    virtual ~IAnimatable() = default;
+    virtual ~Animatable() = default;
 };
