@@ -1,9 +1,18 @@
 #include <Core/Character2D.h>
-#include <Core/Debugging.h>
 #include <Core/Common.h>
+#include <Core/Debugging.h>
 
-void Character2D::Draw() {
+void Character2D::Draw()
+{
     DrawColliderLines();
+}
+
+void Character2D::Update(float dt)
+{
+    if (Controller)
+    {
+        Controller->Update(dt);
+    }
 }
 
 Rectangle Character2D::GetCollider() const
@@ -16,6 +25,7 @@ void Character2D::DrawColliderLines()
     IDebuggable::DrawColliderLines();
 
 #ifdef ENABLE_DEBUGGING_CORE
-    DrawRectangleLinesEx(GetCollider(), Debugging::Character2D::LineWidth, Debugging::Character2D::Color);
+    DrawRectangleLinesEx(GetCollider(), Debugging::Character2D::LineWidth,
+                         Debugging::Character2D::Color);
 #endif
 }

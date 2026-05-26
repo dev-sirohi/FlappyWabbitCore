@@ -66,12 +66,12 @@ void Wabbit::Load()
 
 void Wabbit::_Move(float dt)
 {
-    if (Wabbit::IsGrounded)
+    if (_isGrounded)
     {
         if (IsKeyPressed(KEY_SPACE))
         {
             _velocity.y = -1.0f * VELOCITY_Y;
-            IsGrounded  = false;
+            _isGrounded  = false;
         }
     }
 
@@ -100,7 +100,7 @@ void Wabbit::Update(float dt)
     if (_position.y + _size.y > GetWorldCollider().height)
     {
         _velocity.y = 0;
-        IsGrounded  = true;
+        _isGrounded  = true;
     }
 
     if (_position.x + _size.x > GetWorldCollider().width || _position.x < GetWorldCollider().x)

@@ -6,6 +6,7 @@
 #include <Core/IDebuggable.h>
 #include <Core/IEntity.h>
 #include <Core/Includes.h>
+#include <Core/ICharacter2DController.h>
 
 class Character2D : public IEntity, public ICollidable, public Animatable, public IDebuggable
 {
@@ -17,6 +18,7 @@ class Character2D : public IEntity, public ICollidable, public Animatable, publi
     Vector2 _velocity{};
     Vector2 _size{};
     float _gravity = Constants::GRAVITY;
+    bool _isGrounded;
 
   public:
     virtual ~Character2D()
@@ -27,8 +29,10 @@ class Character2D : public IEntity, public ICollidable, public Animatable, publi
         }
     }
 
+    std::unique_ptr<ICharacter2DController> Controller;
+
     virtual void Load()           = 0;
-    virtual void Update(float dt) = 0;
+    void Update(float dt);
     virtual void Draw();
 
     Rectangle GetCollider() const override;
