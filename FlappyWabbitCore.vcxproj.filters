@@ -4,6 +4,9 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{E145AD0A-4D5C-ABA0-96D3-36C202297C28}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{BDD66C1A-2943-2815-F236-C0725E624A7D}</UniqueIdentifier>
     </Filter>
@@ -31,6 +34,9 @@
     <Filter Include="Game Resource Files">
       <UniqueIdentifier>{BAF00917-2652-E724-AFBF-2DD71B201EE4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game Resource Files\Tiled">
+      <UniqueIdentifier>{BB005C74-27C3-8FFE-7073-1E8BDC7468DC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Windows Resource Files">
       <UniqueIdentifier>{6B659E97-575F-C7E9-40CC-5DFA2C652D56}</UniqueIdentifier>
     </Filter>
@@ -38,6 +44,9 @@
   <ItemGroup>
     <ClInclude Include="include\resource_dir.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Animatable.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Animation2D.h">
       <Filter>Header Files\Core</Filter>
@@ -48,7 +57,19 @@
     <ClInclude Include="src\Core\Character2D.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\Common.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Debugging.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Core\Global.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\ICollidable.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\IDebuggable.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\IEntity.h">
@@ -66,14 +87,20 @@
     <ClInclude Include="src\Scenes\TitleScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\ICollidable.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Core\Animatable.h" />
-    <ClInclude Include="src\Core\Debugging.h" />
-    <ClInclude Include="src\Core\IDebuggable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Animatable.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Character2D.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Common.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\IDebuggable.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\Entities\Character2D\Wabbit.cpp">
       <Filter>Source Files\Entities\Character2D</Filter>
     </ClCompile>
@@ -83,22 +110,17 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\Common.h">
-      <Filter>Header Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Common.cpp">
-      <Filter>Header Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\Animatable.cpp" />
-    <ClCompile Include="src\Core\Character2D.cpp" />
-    <ClCompile Include="src\Core\IDebuggable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\Tiled\Tiles.tiled-project">
+      <Filter>Game Resource Files\Tiled</Filter>
+    </None>
+    <None Include="resources\Tiled\Tiles.tiled-session">
+      <Filter>Game Resource Files\Tiled</Filter>
+    </None>
     <None Include="src\icon.ico">
       <Filter>Windows Resource Files</Filter>
     </None>
-    <None Include=".gitignore" />
-    <None Include=".clang-format" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\application.rc">
