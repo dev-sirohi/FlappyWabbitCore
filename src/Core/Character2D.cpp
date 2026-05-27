@@ -9,15 +9,15 @@ void Character2D::Draw()
 
 void Character2D::Update(float dt)
 {
-    if (Controller)
+    if (UpdateDelegate)
     {
-        Controller->Update(dt);
+        UpdateDelegate(*this, dt);
     }
 }
 
 Rectangle Character2D::GetCollider() const
 {
-    return Rectangle{_position.x, _position.y, _size.x, _size.y};
+    return Rectangle{Position.x, Position.y, Size.x, Size.y};
 }
 
 void Character2D::DrawColliderLines()

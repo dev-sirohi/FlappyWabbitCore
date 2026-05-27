@@ -6,12 +6,8 @@
 
 class Wabbit final : public Character2D
 {
-  private:
-    void _Move(float dt);
-
   public:
     Wabbit();
     void Load() override;
-    virtual void Update(float dt) override;
     void Draw() override;
 };

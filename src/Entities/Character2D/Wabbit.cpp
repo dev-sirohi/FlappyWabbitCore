@@ -1,28 +1,86 @@
 #include <Core/Common.h>
 #include <Core/Global.h>
+#include <Core/ICharacter2DController.h>
 #include <Core/Includes.h>
 #include <Entities/Character2D/Wabbit.h>
 
 namespace
 {
-enum AnimationState
-{
-    REST,
-    // Total Count
-    Size,
-};
+    enum AnimationState
+    {
+        REST,
+        // Total Count
+        Size,
+    };
 
-constexpr std::string_view SPRITE_PATH = "Wabbit.png";
-constexpr float SCALE                  = 2.0f;
-constexpr float FRAME_SIZE             = 32.0f;
+    constexpr std::string_view SPRITE_PATH = "Wabbit.png";
+    constexpr float SCALE                  = 2.0f;
+    constexpr float FRAME_SIZE             = 32.0f;
 
-constexpr Vector2 VELOCITY = Vector2{};
-constexpr Vector2 POSITION = Vector2{100, 100};
-constexpr Vector2 SIZE     = Vector2{(FRAME_SIZE * SCALE), (FRAME_SIZE * SCALE)};
-constexpr Color COLOR      = WHITE;
+    constexpr Vector2 VELOCITY = Vector2{};
+    constexpr Vector2 POSITION = Vector2{100, 100};
+    constexpr Vector2 SIZE     = Vector2{(FRAME_SIZE * SCALE), (FRAME_SIZE * SCALE)};
+    constexpr Color COLOR      = WHITE;
 
-constexpr float VELOCITY_X = 600.0f;
-constexpr float VELOCITY_Y = 800.0f;
+    constexpr float VELOCITY_X = 600.0f;
+    constexpr float VELOCITY_Y = 800.0f;
+
+    inline void MoveWabbit(Character2D &wabbit, float dt)
+    {
+        if (wabbit.IsGrounded)
+        {
+            if (IsKeyPressed(KEY_SPACE))
+            {
+                wabbit.Velocity.y = -1.0f * VELOCITY_Y;
+                wabbit.IsGrounded = false;
+            }
+        }
+
+        wabbit.Velocity.x = 0.0f;
+        if (IsKeyDown(KEY_RIGHT))
+        {
+            wabbit.Velocity.x = VELOCITY_X;
+        }
+        else if (IsKeyDown(KEY_LEFT))
+        {
+            wabbit.Velocity.x = -1.0f * VELOCITY_X;
+        }
+    }
+
+    void PlayerController(Character2D &wabbit, float dt)
+    {
+        wabbit.UpdateAnimation(dt);
+
+        wabbit.Position.x = round(wabbit.Position.x);
+        wabbit.Position.y = round(wabbit.Position.y);
+
+        MoveWabbit(wabbit, dt);
+
+        // Default movements
+        wabbit.Velocity.y += wabbit.Gravity * dt;
+        wabbit.Position.y += wabbit.Velocity.y * dt;
+        wabbit.Position.x += wabbit.Velocity.x * dt;
+
+        if (wabbit.Position.y + wabbit.Size.y > GetWorldCollider().height)
+        {
+            wabbit.Velocity.y = 0;
+            wabbit.IsGrounded = true;
+        }
+
+        if (wabbit.Position.x + wabbit.Size.x > GetWorldCollider().width ||
+            wabbit.Position.x < GetWorldCollider().x)
+        {
+            wabbit.Velocity.x = 0;
+        }
+
+        if (CheckCollisionRecs(wabbit.GetCollider(), GetWorldCollider()))
+        {
+            wabbit.Position.x = std::clamp(wabbit.Position.x, 0.0f,
+                                           Constants::INTERNAL_SCREEN_WIDTH - wabbit.Size.x);
+            wabbit.Position.y = std::clamp(wabbit.Position.y, 0.0f,
+                                           Constants::INTERNAL_SCREEN_HEIGHT - wabbit.Size.y);
+        }
+    }
 
 } // namespace
 
@@ -30,17 +88,19 @@ Wabbit::Wabbit()
 {
     _spritePath = SPRITE_PATH;
 
-    _velocity = VELOCITY;
-    _position = POSITION;
-    _size     = SIZE;
-    _color    = WHITE;
+    Velocity = VELOCITY;
+    Position = POSITION;
+    Size     = SIZE;
+    Color    = COLOR;
 
     InitializeAnimationController(AnimationState::Size);
+
+    UpdateDelegate = PlayerController;
 }
 
 void Wabbit::Load()
 {
-    _texture = LoadTexture(_spritePath.c_str());
+    Texture = LoadTexture(_spritePath.c_str());
 
     // FrameCount for each animation
     // 0, 0   -> 32, 32
@@ -64,68 +124,10 @@ void Wabbit::Load()
     SetAnimation(AnimationState::REST);
 }
 
-void Wabbit::_Move(float dt)
-{
-    if (_isGrounded)
-    {
-        if (IsKeyPressed(KEY_SPACE))
-        {
-            _velocity.y = -1.0f * VELOCITY_Y;
-            _isGrounded  = false;
-        }
-    }
-
-    _velocity.x = 0.0f;
-    if (IsKeyDown(KEY_RIGHT))
-    {
-        _velocity.x = VELOCITY_X;
-    }
-    else if (IsKeyDown(KEY_LEFT))
-    {
-        _velocity.x = -1.0f * VELOCITY_X;
-    }
-}
-
-void Wabbit::Update(float dt)
-{
-    UpdateAnimation(dt);
-
-    _Move(dt);
-
-    // Default movements
-    _velocity.y += _gravity * dt;
-    _position.y += _velocity.y * dt;
-    _position.x += _velocity.x * dt;
-
-    if (_position.y + _size.y > GetWorldCollider().height)
-    {
-        _velocity.y = 0;
-        _isGrounded  = true;
-    }
-
-    if (_position.x + _size.x > GetWorldCollider().width || _position.x < GetWorldCollider().x)
-    {
-        _velocity.x = 0;
-    }
-
-    if (CheckCollisionRecs(GetCollider(), GetWorldCollider()))
-    {
-        _position.x = std::clamp(_position.x, 0.0f, Constants::INTERNAL_SCREEN_WIDTH - _size.x);
-        _position.y = std::clamp(_position.y, 0.0f, Constants::INTERNAL_SCREEN_HEIGHT - _size.y);
-    }
-
-    _position.x = round(_position.x);
-    _position.y = round(_position.y);
-}
-
 void Wabbit::Draw()
 {
     Character2D::Draw();
 
-    DrawTexturePro(_texture,
-                   GetCurrentAnimationFrame(),
-                   Rectangle{_position.x, _position.y, _size.x, _size.y},
-                   Vector2{0, 0},
-                   0.0f,
-                   _color);
+    DrawTexturePro(Texture, GetCurrentAnimationFrame(),
+                   Rectangle{Position.x, Position.y, Size.x, Size.y}, Vector2{0, 0}, 0.0f, Color);
 }

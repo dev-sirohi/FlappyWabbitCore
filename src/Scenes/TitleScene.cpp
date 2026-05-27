@@ -2,6 +2,17 @@
 #include <Entities/Character2D/Wabbit.h>
 #include <Scenes/TitleScene.h>
 
+namespace
+{
+    enum Cutscenes
+    {
+        Opening,
+    };
+
+    bool IsCutscene = false;
+    int CutsceneId  = -1;
+} // namespace
+
 TitleScene::TitleScene()
 {
     auto wabbit = std::make_unique<Wabbit>();
@@ -11,14 +22,27 @@ TitleScene::TitleScene()
 
 void TitleScene::Load()
 {
-    for (const auto &entity : _entityList)
+    switch (CutsceneId)
     {
-        entity->Load();
+        case Cutscenes::Opening:
+        {
+        }
+        default:
+        {
+            for (const auto &entity : _entityList)
+            {
+                entity->Load();
+            }
+        }
     }
 }
 
 void TitleScene::Update(float dt)
 {
+    if (IsCutscene)
+    {
+    }
+
     for (const auto &entity : _entityList)
     {
         entity->Update(dt);

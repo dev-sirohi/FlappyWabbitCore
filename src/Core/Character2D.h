@@ -2,36 +2,37 @@
 
 #include <Core/Animatable.h>
 #include <Core/Global.h>
+#include <Core/ICharacter2DController.h>
 #include <Core/ICollidable.h>
 #include <Core/IDebuggable.h>
 #include <Core/IEntity.h>
 #include <Core/Includes.h>
-#include <Core/ICharacter2DController.h>
 
 class Character2D : public IEntity, public ICollidable, public Animatable, public IDebuggable
 {
   protected:
     std::string _spritePath = "";
-    Texture2D _texture{};
-    Color _color = WHITE;
-    Vector2 _position{};
-    Vector2 _velocity{};
-    Vector2 _size{};
-    float _gravity = Constants::GRAVITY;
-    bool _isGrounded;
 
   public:
+    Texture2D Texture{};
+    Color Color;
+    Vector2 Position{};
+    Vector2 Velocity{};
+    Vector2 Size{};
+    float Gravity = Constants::GRAVITY;
+    bool IsGrounded;
+
     virtual ~Character2D()
     {
-        if (_texture.id != 0)
+        if (Texture.id != 0)
         {
-            UnloadTexture(_texture);
+            UnloadTexture(Texture);
         }
     }
 
-    std::unique_ptr<ICharacter2DController> Controller;
+    std::function<void(Character2D &, float)> UpdateDelegate;
 
-    virtual void Load()           = 0;
+    virtual void Load() = 0;
     void Update(float dt);
     virtual void Draw();
 

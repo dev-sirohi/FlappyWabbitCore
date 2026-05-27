@@ -89,7 +89,8 @@
     </ClInclude>
     <ClInclude Include="src\Core\ThirdParty\Tiled\Tiled.h" />
     <ClInclude Include="src\Core\ThirdParty\ThirdPartyIncludes.h" />
-    <ClInclude Include="src\Core\IEntityController.h" />
+    <ClInclude Include="src\Core\PlayerController.h" />
+    <ClInclude Include="src\Core\ICharacter2DController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Animatable.cpp">
@@ -114,6 +115,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\ThirdParty\Tiled\Tiled.cpp" />
+    <ClCompile Include="src\Core\PlayerCharacter2DController.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\Tiled\Tiles.tiled-project">
